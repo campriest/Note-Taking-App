@@ -53,7 +53,7 @@ var formStyle = {
     display: 'inline',
     position: 'absolute',
     marginTop: 17,
-    marginLeft: 12,
+    marginLeft: 12
 
 
 }
@@ -61,87 +61,207 @@ var formStyle = {
 var inputStyle = {
     display: 'inline',
     position: 'absolute',
-    marginTop: 8,
-    marginLeft: 6,
+    marginTop: -10,
+    marginLeft: -6,
     width: 192,
     height: 180,
-    borderRadius: 8
+    borderRadius: 8,
+    backgroundColor: 'rgba(50,50,50,.6)'
 
 }
 
 var displayBox = {
     display: 'inline',
     position: 'absolute',
-    marginTop: 270,
-    marginLeft: 450,
-    width: 170,
+    marginTop: 50,
+    marginLeft: 20,
+    width: 340,
     height: 50,
     borderRadius: 8,
-    backgroundColor: 'rgb(220, 220, 220)'
+    backgroundColor: 'rgb(220, 220, 220)',
+    fontSize: 8
 }
+var buttonCircle = {
+
+    display: 'inline',
+    position: 'absolute',
+    marginTop: 400,
+    marginLeft: 50,
+    width: 20,
+    height: 10,
+    backgroundColor: 'rgb(15,15,15)'
+
+
+}
+var buttonPosition = {
+
+    display: 'inline',
+    position: 'absolute',
+    marginTop: 200,
+    marginLeft: 10,
+    width: 50,
+    height: 20,
+    backgroundColor: 'rgb(220,220,220)',
+    borderRadius: 3
+
+}
+
+var clearButton = {
+    display: 'inline',
+    position: 'absolute',
+    marginTop: 216,
+    marginLeft: 130,
+    width: 50,
+    height: 20,
+    backgroundColor: 'rgb(220,220,220)',
+    borderRadius: 3
+
+
+}
+
 
 export default class NoteDisplay extends React.Component{
 
   constructor(props){
-    super(props);
+    super();
 
-      this.state = {value: ''
+      this.state = {
+        value: '',
+        note: '',
+        showComponent: false,
+        multiNote: []
 
-                    };
+
+      };
 
       this.buttonClick = this.buttonClick.bind(this);
       this.handleChange = this.handleChange.bind(this);
+      this.buttonClear = this.buttonClear.bind(this);
 
   }
 
 
-  buttonClick(){
-    console.log("works");
-  }
 
-  handleChange(){
-    this.setState = {
-      value: ' '
 
-    };
+
+  handleChange(e){
+
+    let noteInput = this.refs.noteValue.value;
+
+    this.setState ({
+      value: e.target.value
+      //multiNote: this.state.multiNote.concat([]);
+    });
     console.log("change is firing");
+    //console.log(this.state.value);
+    console.log("here: " + noteInput);
   }
+
+
+  buttonClick(e){
+    e.preventDefault();
+
+
+
+    console.log("works: " + e.target[0].value);
+
+    this.setState ({
+      note: e.target[0].value,
+      showComponent: true,
+      multiNote: [<Notes note = {this.state.note}/>]
+
+    });
+
+
+
+  }
+
+  buttonClear(e){
+
+    e.preventDefault();
+
+    this.setState({
+        note: ''
+      });
+  }
+
+
+
+
+
 
   render(){
 
+
+    //const multiNotes = multiNote.map((moreNote) => <div> {moreNote} </div> );
 
       return(
 
           <div style = {noteDisplayBox}>
 
-                <div onClick = {this.buttonClick} style = {createNoteButton}>
+                {/* <div onClick = {this.buttonClick} style = {createNoteButton}>
 
                     <h1 style = {noteCreateText}>New...</h1>
 
-                </div>
+                </div> */}
 
 
 
                 <div style = {noteBox}>
 
 
-                  <form style = {formStyle} id = "noteForm">
+                <form style = {formStyle} onSubmit = {this.buttonClick} >
 
 
 
-                  </form>
 
-                    <textarea style = {inputStyle} type = "text"  onSubmit = {this.handleChange} form = "noteForm"  />
+                  <textarea style = {inputStyle} value = {this.state.value} onChange = {this.handleChange}ref = "noteValue" >
 
+                  </textarea>
 
-                </div>
-
-
-                <div style = {displayBox}>
+                    <input style = {buttonPosition} type = "submit" value = "Submit"/>
 
 
-                </div>
 
+                </form>
+
+
+                    <button  style = {clearButton} onClick = {this.buttonClear}>Clear</button>
+
+
+            </div>
+
+            {/* // <div>
+            //     <button  style = {clearButton} onClick = {this.buttonClear}>Clear</button>
+            //   {this.state.showComponent ? <Notes note = {this.state.note} />}
+            // </div> */}
+
+
+
+                {/* <div style = {displayBox}>
+                  <h1>
+                  {this.state.note}</h1>
+
+
+
+                </div> */}
+                {/* <Notes note = {this.state.note} /> */}
+
+              {/* //<Notes note = {this.state.note} /> */}
+
+              <div>
+
+
+                  {this.state.multiNote.map((note) =>
+                    <div>{note}</div>
+
+
+                  )}
+
+                  {/* {this.state.multiNote} */}
+
+
+              </div>
 
           </div>
 
@@ -149,4 +269,49 @@ export default class NoteDisplay extends React.Component{
 
       );
   }
+}
+
+
+var noteStyle = {
+    display: 'inline',
+    position: 'absolute',
+    marginTop: 50,
+    marginLeft: 15,
+    width: '350px',
+    height: '50px',
+    backgroundColor: 'rgb(100, 100, 100)',
+    borderRadius: '8px',
+    fontSize: 12,
+
+
+
+}
+
+class Notes extends React.Component{
+
+  constructor(props){
+    super(props)
+
+
+
+
+
+  }
+
+
+
+
+
+    render(){
+      return (
+
+        <div style = {noteStyle}>
+
+            <h1> {this.props.note}</h1>
+
+        </div>
+
+        );
+      }
+
 }
