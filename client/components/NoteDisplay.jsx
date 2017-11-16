@@ -134,10 +134,11 @@ export default class NoteDisplay extends React.Component{
 
       };
 
-      this.buttonClick = this.buttonClick.bind(this);
+      this.buttonClick  = this.buttonClick.bind(this);
       this.handleChange = this.handleChange.bind(this);
-      this.buttonClear = this.buttonClear.bind(this);
-
+      this.buttonClear  = this.buttonClear.bind(this);
+      this.updateText   = this.updateText.bind(this);
+      this.deleteBox    = this.deleteBox.bind(this);
   }
 
 
@@ -150,7 +151,7 @@ export default class NoteDisplay extends React.Component{
 
     this.setState ({
       value: e.target.value
-      //multiNote: this.state.multiNote.concat([]);
+
     });
     console.log("change is firing");
     //console.log(this.state.value);
@@ -168,10 +169,27 @@ export default class NoteDisplay extends React.Component{
     this.setState ({
       note: e.target[0].value,
       showComponent: true,
-      multiNote: [<Notes note = {this.state.note}/>]
+      //multiNote: [<Notes note = {this.state.note}/>]
 
     });
 
+    this.updateText();
+
+  }
+
+  updateText(){
+
+    this.setState({
+
+      multiNote: this.state.multiNote.concat([<Notes note = {this.state.note} />])
+      // multiNote: [<Notes note = {this.state.note}/>]
+
+    })
+
+
+  }
+
+  deleteBox(){
 
 
   }
@@ -255,8 +273,9 @@ export default class NoteDisplay extends React.Component{
                   {this.state.multiNote.map((note) =>
                     <div>{note}</div>
 
-
                   )}
+
+                  {/* creates text box */}
 
                   {/* {this.state.multiNote} */}
 
