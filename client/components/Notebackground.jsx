@@ -9,7 +9,7 @@ var boxStyle = {
   width: 700,
   height: 500,
   backgroundColor: 'rgb(220, 220, 220)',
-  borderRadius: '10px'
+  borderRadius: '10'
 
 };
 

@@ -214,26 +214,33 @@ export default class NoteDisplay extends React.Component{
     //const multiNotes = multiNote.map((moreNote) => <div> {moreNote} </div> );
 
       return(
-
+        <div>
           <div style = {noteDisplayBox}>
 
-                {/* <div onClick = {this.buttonClick} style = {createNoteButton}>
 
-                    <h1 style = {noteCreateText}>New...</h1>
+            {this.state.multiNote.map((note, index) =>
+              <div key = {index}> {note}</div>
 
-                </div> */}
+            )}
 
+
+
+          </div>
 
 
                 <div style = {noteBox}>
 
 
-                <form style = {formStyle} onSubmit = {this.buttonClick} >
 
 
 
 
-                  <textarea style = {inputStyle} value = {this.state.value} onChange = {this.handleChange}ref = "noteValue" >
+                <form style = {formStyle} onSubmit = {this.buttonClick}>
+
+
+
+
+                  <textarea style = {inputStyle} value = {this.state.value} onChange = {this.handleChange}  ref = "noteValue">
 
                   </textarea>
 
@@ -249,10 +256,10 @@ export default class NoteDisplay extends React.Component{
 
             </div>
 
-            {/* // <div>
-            //     <button  style = {clearButton} onClick = {this.buttonClear}>Clear</button>
-            //   {this.state.showComponent ? <Notes note = {this.state.note} />}
-            // </div> */}
+            {/* <div>
+                <button  style = {clearButton} onClick = {this.buttonClear}>Clear</button>
+              {this.state.showComponent ? <Notes note = {this.state.note} />}
+         </div> */}
 
 
 
@@ -270,10 +277,10 @@ export default class NoteDisplay extends React.Component{
               <div>
 
 
-                  {this.state.multiNote.map((note) =>
+                  {/* {this.state.multiNote.map((note) =>
                     <div>{note}</div>
 
-                  )}
+                  )} */}
 
                   {/* creates text box */}
 
@@ -282,9 +289,9 @@ export default class NoteDisplay extends React.Component{
 
               </div>
 
-          </div>
 
 
+</div>
 
       );
   }
@@ -292,8 +299,9 @@ export default class NoteDisplay extends React.Component{
 
 
 var noteStyle = {
-    display: 'inline',
-    position: 'absolute',
+    //display: 'inline',
+    //position: 'absolute',
+    position: 'relative',
     marginTop: 50,
     marginLeft: 15,
     width: '350px',
