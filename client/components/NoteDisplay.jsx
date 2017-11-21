@@ -8,7 +8,7 @@ var noteDisplayBox = {
     marginLeft: 40,
     width: 380,
     height: 460,
-    backgroundColor: 'white',
+    backgroundColor: 'rgb(50,50,50)',
     borderRadius: 10
 };
 
@@ -41,11 +41,14 @@ var noteBox = {
     display: 'inline',
     position: 'absolute',
     marginTop: 60,
-    marginLeft: 430,
+    marginLeft: '53.7%',
     width: 210,
     height:200,
     backgroundColor: 'rgb(220, 220, 220)',
-    borderRadius: 8
+    borderRadius: 8,
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderColor: 'rgb(255, 67, 31)'
 
 }
 
@@ -98,7 +101,7 @@ var buttonPosition = {
     display: 'inline',
     position: 'absolute',
     marginTop: 200,
-    marginLeft: 10,
+    marginLeft: 140,
     width: 50,
     height: 20,
     backgroundColor: 'rgb(220,220,220)',
@@ -123,7 +126,7 @@ var clearButton = {
 export default class NoteDisplay extends React.Component{
 
   constructor(props){
-    super();
+    super(props);
 
       this.state = {
         value: '',
@@ -131,15 +134,28 @@ export default class NoteDisplay extends React.Component{
         showComponent: false,
         multiNote: []
 
+    };
 
-      };
+
+
+
 
       this.buttonClick  = this.buttonClick.bind(this);
       this.handleChange = this.handleChange.bind(this);
       this.buttonClear  = this.buttonClear.bind(this);
-      this.updateText   = this.updateText.bind(this);
+      //this.updateText   = this.updateText.bind(this);
       this.deleteBox    = this.deleteBox.bind(this);
   }
+
+
+
+  // componentWillUpdate(){
+  //
+  //   this.updateText();
+  //
+  // }
+
+
 
 
 
@@ -149,55 +165,64 @@ export default class NoteDisplay extends React.Component{
 
     let noteInput = this.refs.noteValue.value;
 
-    this.setState ({
-      value: e.target.value
+      this.setState ({
+          value: e.target.value,
+          note: e.target.value
+        });
 
-    });
-    console.log("change is firing");
+        console.log("change is firing");
     //console.log(this.state.value);
-    console.log("here: " + noteInput);
+      console.log("here: " + noteInput);
   }
 
 
   buttonClick(e){
-    e.preventDefault();
+      e.preventDefault();
+      console.log("works: " + e.target[0].value);
 
+      this.setState ({
+        note: e.target[0].value,
+        showComponent: true,
+        multiNote: this.state.multiNote.concat([<Notes note = {this.state.note} />])
 
+      });
 
-    console.log("works: " + e.target[0].value);
-
-    this.setState ({
-      note: e.target[0].value,
-      showComponent: true,
-      //multiNote: [<Notes note = {this.state.note}/>]
-
-    });
-
-    this.updateText();
+    //this.updateText();
 
   }
 
-  updateText(){
+  // componentWillUpdate(){
+  //
+  //
+  //     this.updateText();
+  // }
 
-    this.setState({
+  // updateText(){
+  //
+  //
+  //   this.setState({
+  //
+  //     multiNote: this.state.multiNote.concat([<Notes note = {this.state.note} />])
+  //     // multiNote: [<Notes note = {this.state.note}/>]
+  //
+  //   });
+  //
+  //
+  // }
 
-      multiNote: this.state.multiNote.concat([<Notes note = {this.state.note} />])
-      // multiNote: [<Notes note = {this.state.note}/>]
-
-    })
-
-
-  }
-
-  deleteBox(){
-
+  deleteBox(e){
+    // var currentArray = this.state.multiNote;
+    // var index        = currentArray.indexOf(e.target.value);
+    // currentArray.splice(indexm, 1);
+    // this.setState({
+    //   multiNote: currentArray
+    // });
 
   }
 
   buttonClear(e){
 
     e.preventDefault();
-
     this.setState({
         note: ''
       });
@@ -205,56 +230,31 @@ export default class NoteDisplay extends React.Component{
 
 
 
+  componentDidMount(){
+     console.log('props values', this.props); //it will print the props values
+  }
 
 
 
   render(){
-
-
     //const multiNotes = multiNote.map((moreNote) => <div> {moreNote} </div> );
 
       return(
         <div>
+
           <div style = {noteDisplayBox}>
-
-
             {this.state.multiNote.map((note, index) =>
-              <div key = {index}> {note}</div>
-
-            )}
-
-
-
+              <div key = {index}> {note}</div>)
+            }
           </div>
-
-
                 <div style = {noteBox}>
-
-
-
-
-
-
-                <form style = {formStyle} onSubmit = {this.buttonClick}>
-
-
-
-
-                  <textarea style = {inputStyle} value = {this.state.value} onChange = {this.handleChange}  ref = "noteValue">
-
-                  </textarea>
-
-                    <input style = {buttonPosition} type = "submit" value = "Submit"/>
-
-
-
-                </form>
-
-
-                    <button  style = {clearButton} onClick = {this.buttonClear}>Clear</button>
-
-
-            </div>
+                    <form style = {formStyle} onSubmit = {this.buttonClick}>
+                        <textarea style = {inputStyle} value = {this.state.value} onChange = {this.handleChange}  ref = "noteValue">
+                        </textarea>
+                            <input style = {buttonPosition} type = "submit" value = "Submit"/>
+                    </form>
+                        {/* <button  style = {clearButton} onClick = {this.buttonClear}>Clear</button> */}
+                </div>
 
             {/* <div>
                 <button  style = {clearButton} onClick = {this.buttonClear}>Clear</button>
@@ -289,8 +289,6 @@ export default class NoteDisplay extends React.Component{
 
               </div>
 
-
-
 </div>
 
       );
@@ -308,11 +306,40 @@ var noteStyle = {
     height: '50px',
     backgroundColor: 'rgb(100, 100, 100)',
     borderRadius: '8px',
-    fontSize: 12,
+    fontSize: 8,
+    color: 'rgb(255,255,255)',
+    fontFamily: 'Raleway',
+
 
 
 
 }
+
+var deleteButton = {
+    display: 'inline',
+    position: 'absolute',
+    marginLeft: 325,
+    width: 25,
+    height: 20,
+    backgroundColor: 'rgb(100, 100,100)',
+    borderRadius: '8px',
+
+
+
+
+
+}
+
+var xSpot = {
+    display: 'inline',
+    position: 'absolute',
+    marginLeft: 11,
+    marginTop: 4
+
+}
+
+
+
 
 class Notes extends React.Component{
 
@@ -334,7 +361,14 @@ class Notes extends React.Component{
 
         <div style = {noteStyle}>
 
-            <h1> {this.props.note}</h1>
+
+          <div style = {deleteButton} onClick = {this.buttonClear}>
+              <p style = {xSpot}>X</p>
+          </div>
+
+              <h1> {this.props.note}</h1>
+
+
 
         </div>
 
