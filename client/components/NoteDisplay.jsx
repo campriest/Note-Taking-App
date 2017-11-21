@@ -4,6 +4,7 @@ import React from 'react';
 var noteDisplayBox = {
     display: 'inline',
     position: 'absolute',
+    overflow: 'scroll',
     marginTop: 40,
     marginLeft: 40,
     width: 380,
@@ -134,6 +135,7 @@ export default class NoteDisplay extends React.Component{
         showComponent: false,
         multiNote: []
 
+
     };
 
 
@@ -170,9 +172,9 @@ export default class NoteDisplay extends React.Component{
           note: e.target.value
         });
 
-        console.log("change is firing");
+            console.log("change is firing");
     //console.log(this.state.value);
-      console.log("here: " + noteInput);
+            console.log("here: " + noteInput);
   }
 
 
@@ -183,7 +185,7 @@ export default class NoteDisplay extends React.Component{
       this.setState ({
         note: e.target[0].value,
         showComponent: true,
-        multiNote: this.state.multiNote.concat([<Notes note = {this.state.note} />])
+        multiNote: this.state.multiNote.concat([<Notes note = {this.state.note} clear = {this.buttonClear}/>])
 
       });
 
@@ -213,7 +215,7 @@ export default class NoteDisplay extends React.Component{
   deleteBox(e){
     // var currentArray = this.state.multiNote;
     // var index        = currentArray.indexOf(e.target.value);
-    // currentArray.splice(indexm, 1);
+    // currentArray.splice(index, 1);
     // this.setState({
     //   multiNote: currentArray
     // });
@@ -224,8 +226,10 @@ export default class NoteDisplay extends React.Component{
 
     e.preventDefault();
     this.setState({
-        note: ''
+      
       });
+
+      console.log('clear is being clicked');
   }
 
 
@@ -276,7 +280,7 @@ export default class NoteDisplay extends React.Component{
 
               <div>
 
-
+                {/* <Notes clear = {this.buttonClear}/> */}
                   {/* {this.state.multiNote.map((note) =>
                     <div>{note}</div>
 
@@ -300,6 +304,7 @@ var noteStyle = {
     //display: 'inline',
     //position: 'absolute',
     position: 'relative',
+    overflow: 'scroll',
     marginTop: 50,
     marginLeft: 15,
     width: '350px',
@@ -313,6 +318,11 @@ var noteStyle = {
 
 
 
+}
+
+var textStyle = {
+
+    marginLeft: 8
 }
 
 var deleteButton = {
@@ -346,12 +356,16 @@ class Notes extends React.Component{
   constructor(props){
     super(props)
 
-
+    //this.clear = this.clear.bind(this);
 
 
 
   }
-
+  // clear(){
+  //
+  //   this.props.buttonClear();
+  //
+  // }
 
 
 
@@ -362,11 +376,12 @@ class Notes extends React.Component{
         <div style = {noteStyle}>
 
 
-          <div style = {deleteButton} onClick = {this.buttonClear}>
-              <p style = {xSpot}>X</p>
+          <div style = {deleteButton} onClick = {this.props.clear}>
+
+          <p style = {xSpot}>X</p>
           </div>
 
-              <h1> {this.props.note}</h1>
+              <h1 style = {textStyle}> {this.props.note}</h1>
 
 
 
