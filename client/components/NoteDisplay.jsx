@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 
 var noteDisplayBox = {
@@ -147,6 +148,7 @@ export default class NoteDisplay extends React.Component{
       this.buttonClear  = this.buttonClear.bind(this);
       //this.updateText   = this.updateText.bind(this);
       this.deleteBox    = this.deleteBox.bind(this);
+
   }
 
 
@@ -185,7 +187,7 @@ export default class NoteDisplay extends React.Component{
       this.setState ({
         note: e.target[0].value,
         showComponent: true,
-        multiNote: this.state.multiNote.concat([<Notes note = {this.state.note} clear = {this.buttonClear}/>])
+        multiNote: this.state.multiNote.concat([<Notes note = {this.state.note} clear = {this.deleteBox}/>])
 
       });
 
@@ -212,24 +214,53 @@ export default class NoteDisplay extends React.Component{
   //
   // }
 
-  deleteBox(e){
-    // var currentArray = this.state.multiNote;
-    // var index        = currentArray.indexOf(e.target.value);
-    // currentArray.splice(index, 1);
-    // this.setState({
-    //   multiNote: currentArray
+  deleteBox(){
+
+    let find = ReactDOM.findDOMNode(this.refs.box);
+    let unmount = ReactDOM.unmountComponentAtNode(find);
+
+    this.setState({
+
+      multiNote: [unmount]
+    })
+
+
+    //
+    // this.setState ({
+    //
+    //     multiNote:
     // });
+
+    //find.parentNode.removeChild(find);
+
+    console.log(find);
+
+    // var element = document.getElementsByTagName("div") ;
+    //
+    // var grab = element.activeElement;
+    // //element.parentNode.removeChild(element);
+    //
+    // console.log('parent node: ' + element);
+    // var newArray = this.state.multiNote.slice();
+    // newArray.splice(index, index + 1);
+
+      // this.setState({
+      //   muliNote: newArray
+      //
+      // });
 
   }
 
   buttonClear(e){
 
     e.preventDefault();
-    this.setState({
-      
-      });
+    //this.deleteBox();
+
+
 
       console.log('clear is being clicked');
+
+      this.deleteBox();
   }
 
 
@@ -248,8 +279,10 @@ export default class NoteDisplay extends React.Component{
 
           <div style = {noteDisplayBox}>
             {this.state.multiNote.map((note, index) =>
-              <div key = {index}> {note}</div>)
+              <div ref = "box" key = {index}> {note}</div>)
+
             }
+
           </div>
                 <div style = {noteBox}>
                     <form style = {formStyle} onSubmit = {this.buttonClick}>
@@ -361,11 +394,11 @@ class Notes extends React.Component{
 
 
   }
-  // clear(){
-  //
-  //   this.props.buttonClear();
-  //
-  // }
+  clearBox(){
+
+    this.props.clear();
+
+  }
 
 
 
@@ -373,12 +406,11 @@ class Notes extends React.Component{
     render(){
       return (
 
-        <div style = {noteStyle}>
+        <div style = {noteStyle} >
 
 
           <div style = {deleteButton} onClick = {this.props.clear}>
-
-          <p style = {xSpot}>X</p>
+                  <p style = {xSpot}>X</p>
           </div>
 
               <h1 style = {textStyle}> {this.props.note}</h1>
