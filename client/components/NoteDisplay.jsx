@@ -214,14 +214,44 @@ export default class NoteDisplay extends React.Component{
   //
   // }
 
-  deleteBox(){
+  deleteBox(e){
+    e.preventDefault();
 
-    let find = ReactDOM.findDOMNode(this.refs.box);
-    let unmount = ReactDOM.unmountComponentAtNode(find);
+    let find = ReactDOM.findDOMNode(this.noteNumber);
+
+    console.log(find);
+    //let findNote = e.target.getAttribute(this.refs.);
+    ///console.log(findNote);
+    //let find = ReactDOM.findDOMNode(this.refs.note);
+    //let unmount = ReactDOM.unmountComponentAtNode(find);
+    //let find = ReactDOM.findDOMNode(e.currentTarget);
+
+    //console.log("find: " + findNote);
+    //var newArray = this.state.multiNote;
+    //var index = newArray.indexOf(e.target.value);
+     //var sparse = Object.keys(newArray);
+    //var sparse = newArray.keys();
+
+    //var index = e.currentTarget.dataset.index;
+
+
+
+    //var index = newArray.indexOf(e.target.dataset.id);
+
+
+    //console.log("keys: " + sparse + " " + "index: "+ index + " "+ "target:  " + e.currentTarget);
+    //let unmount = ReactDOM.unmountComponentAtNode(find);
+     //var array = newArray.slice(sparse, sparse + 1);
+
+    //this.state.multiNote.indexOf(find);
+
+    //console.log("index: " + this.state.newArray.indexOf(find));
+
 
     this.setState({
 
-      multiNote: [unmount]
+      multiNote: this.state.multiNote
+
     })
 
 
@@ -233,7 +263,7 @@ export default class NoteDisplay extends React.Component{
 
     //find.parentNode.removeChild(find);
 
-    console.log(find);
+  //  console.log(find);
 
     // var element = document.getElementsByTagName("div") ;
     //
@@ -248,6 +278,25 @@ export default class NoteDisplay extends React.Component{
       //   muliNote: newArray
       //
       // });
+
+  }
+
+  findIndex(index){
+
+
+    var newArray = this.state.multiNote;
+
+    newArray.splice(index, 1);
+
+    console.log("index: " + index);
+
+    this.setState({
+
+      multiNote: newArray
+    })
+
+
+
 
   }
 
@@ -278,9 +327,11 @@ export default class NoteDisplay extends React.Component{
         <div>
 
           <div style = {noteDisplayBox}>
-            {this.state.multiNote.map((note, index) =>
-              <div ref = "box" key = {index}> {note}</div>)
 
+
+            {this.state.multiNote.map((note, index) =>
+              <div ref = {note => this.noteNumber = note} key = {index} onClick = {this.findIndex.bind(this, index)}> {note}</div>)
+                //console.log("mapping: " + note + index + multiNote);
             }
 
           </div>
