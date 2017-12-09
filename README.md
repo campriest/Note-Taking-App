@@ -14,4 +14,6 @@ Next Steps:
 
 ![alt text](https://github.com/campriest/Note-Taking-App/blob/master/Screen%20Shot%202017-12-04%20at%204.47.44%20PM.png)
 
+-Adding Time
+
 ![alt text](https://github.com/campriest/Note-Taking-App/blob/master/Screen%20Shot%202017-12-09%20at%2012.16.49%20AM.png)
