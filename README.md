@@ -19,9 +19,13 @@ Notes: I am able to add notes and delete them.
 Next Steps: 
 
 -Change the UI. 
+
 -Add time and date--connect api.
+
 -Maybe weather as well. 
+
 -Update one state methood. 
+
 -Add time stamp to notes.
 
 
