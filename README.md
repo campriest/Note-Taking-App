@@ -3,9 +3,10 @@
 Start of Project
 
 Objective:
--Simple note taking app. Uses reacts state function to update and delete notes. 
+Simple note taking app. Uses reacts state function to update and delete notes. 
 
 Packages:
+
 -React
 -Reat-Dom
 -Moment.js
