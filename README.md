@@ -6,6 +6,8 @@ Link:
 
 http://telling-trick.surge.sh/
 
+(Not responsive)
+
 Objective:
 Simple note taking app. Uses reacts state function to update and delete notes. 
 
