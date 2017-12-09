@@ -17,3 +17,5 @@ Next Steps:
 -Adding Time
 
 ![alt text](https://github.com/campriest/Note-Taking-App/blob/master/Screen%20Shot%202017-12-09%20at%2012.16.49%20AM.png)
+
+![alt text](https://github.com/campriest/Note-Taking-App/blob/master/Screen%20Shot%202017-12-09%20at%2012.46.53%20AM.png)
