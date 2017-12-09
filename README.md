@@ -18,5 +18,10 @@ Next Steps:
 
 ![alt text](https://github.com/campriest/Note-Taking-App/blob/master/Screen%20Shot%202017-12-09%20at%2012.16.49%20AM.png)
 
+-Rearrange layout
+
 ![alt text](https://github.com/campriest/Note-Taking-App/blob/master/Screen%20Shot%202017-12-09%20at%2012.46.53%20AM.png)
+
+-Removed black border outline
+
 ![alt text](https://github.com/campriest/Note-Taking-App/blob/master/Screen%20Shot%202017-12-09%20at%201.04.58%20AM.png)
