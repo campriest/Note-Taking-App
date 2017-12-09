@@ -2,6 +2,15 @@
 
 Start of Project
 
+Objective:
+-Simple note taking app. Uses reacts state function to update and delete notes. 
+
+Packages:
+-React
+-Reat-Dom
+-Moment.js
+
+
 Notes: I am able to add notes and delete them. 
 
 Next Steps: 
@@ -10,6 +19,7 @@ Next Steps:
 -Add time and date--connect api.
 -Maybe weather as well. 
 -Update one state methood. 
+-Add time stamp to notes.
 
 
 ![alt text](https://github.com/campriest/Note-Taking-App/blob/master/Screen%20Shot%202017-12-04%20at%204.47.44%20PM.png)
